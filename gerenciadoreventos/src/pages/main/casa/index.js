@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import api from "../../services/api";
+import api from "../../../services/api";
 import "./styles.css";
+import { Link } from "react-router-dom";
+
 
 export default class Main extends Component{
     state = {
@@ -13,13 +15,12 @@ componentDidMount(){
 }
 
     loadProducts = async () => {
-        const response = await api.get(`/casas`);
+        const response = await api.get('/casas');
         this.setState({ casas : response.data });
     };
 
     render(){
         const { casas } = this.state;
-
 
         return (
             <div className="casas-list">
@@ -28,12 +29,10 @@ componentDidMount(){
                         <strong>{casa.nome}</strong>
                         <p>{casa.endereco}</p>
 
-                        <a href="#">Acessar</a>
                     </article>
                 ))}
                 <div className="actions">
-                    <button onClick={this.prevPage}>Anterior</button>
-                    <button onClick={this.nextPage}>Proximo</button>
+                    <button><Link to="/eventos">Eventos</Link></button>
                 </div>
             </div>
         )
